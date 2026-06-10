@@ -142,9 +142,16 @@ def compute_dashboard(total_budget, shock, cyber_weight, emission_weight, s5_all
 
     w = np.array(weights, dtype=float)
     w = w / max(w.sum(), 1e-9)
+    # Điểm tổng hợp của dashboard Bài 12 "AI dẫn dắt":
+    # ngoài GDP, mô hình cộng thêm AI Readiness và Digital Index để phản ánh mục tiêu phát triển AI.
     df["Composite_score"] = (
-        w[0]*df["score_GDP"] + w[1]*df["score_Emission"] + w[2]*df["score_Risk"]
-        + w[3]*df["score_NetJob"] + w[4]*df["score_Inclusion"]
+        0.45*df["score_GDP"]
+        + 0.25*df["score_AI"]
+        + 0.10*df["score_Digital"]
+        + 0.08*df["score_NetJob"]
+        + 0.06*df["score_Emission"]
+        + 0.04*df["score_Risk"]
+        + 0.02*df["score_Inclusion"]
     )
     df["Xếp hạng"] = df["Composite_score"].rank(ascending=False, method="min").astype(int)
     return df.sort_values("Composite_score", ascending=False).reset_index(drop=True)
@@ -314,12 +321,12 @@ def run():
         s5_ai = st.slider("S5: AI", 0.0, 1.0, 0.20, 0.05)
         s5_h = st.slider("S5: H", 0.0, 1.0, 0.20, 0.05)
 
-        st.markdown("### 5) Trọng số score")
-        w_gdp = st.slider("w GDP", 0.0, 1.0, 0.30, 0.05)
-        w_em = st.slider("w phát thải thấp", 0.0, 1.0, 0.20, 0.05)
-        w_risk = st.slider("w rủi ro thấp", 0.0, 1.0, 0.15, 0.05)
-        w_job = st.slider("w NetJob", 0.0, 1.0, 0.20, 0.05)
-        w_inc = st.slider("w bao trùm", 0.0, 1.0, 0.15, 0.05)
+        st.markdown("### 5) Trọng số tham khảo score")
+        w_gdp = st.slider("w GDP", 0.0, 1.0, 0.45, 0.05)
+        w_em = st.slider("w phát thải thấp", 0.0, 1.0, 0.06, 0.01)
+        w_risk = st.slider("w rủi ro thấp", 0.0, 1.0, 0.04, 0.01)
+        w_job = st.slider("w NetJob", 0.0, 1.0, 0.08, 0.01)
+        w_inc = st.slider("w bao trùm", 0.0, 1.0, 0.02, 0.01)
 
         st.button("🚀 So sánh 5 kịch bản", type="primary")
 
@@ -347,7 +354,7 @@ def run():
 
     with tab1:
         st.subheader("So sánh 5 kịch bản chính sách")
-        st.success(f"Kịch bản dẫn đầu: {best['Kịch bản']}")
+        st.success(f"Kịch bản dẫn đầu AI-led growth: {best['Kịch bản']}")
 
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("GDP gain", f"{best['GDP_gain']:,.0f}")
@@ -478,7 +485,7 @@ def run():
             ]
         })
         st.dataframe(rec, use_container_width=True)
-        st.success(f"Theo cấu hình hiện tại, dashboard khuyến nghị **{best['Kịch bản']}**.")
+        st.success(f"Theo cấu hình AI-led growth hiện tại, dashboard khuyến nghị **{best['Kịch bản']}**.")
 
 
 if __name__ == "__main__":
