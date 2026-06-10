@@ -1,0 +1,30 @@
+﻿model,scenario,criterion,weight,direction,description
+bai3_priority_sectors,default,growth_rate_2024_pct,0.15,benefit,Tăng trưởng ngành; càng cao càng ưu tiên
+bai3_priority_sectors,default,gdp_share_2024_pct,0.15,benefit,Quy mô/đóng góp GDP ngành
+bai3_priority_sectors,default,spillover_coef_0_1,0.2,benefit,Hiệu ứng lan tỏa
+bai3_priority_sectors,default,export_billion_USD,0.15,benefit,Năng lực xuất khẩu
+bai3_priority_sectors,default,labor_million,0.1,benefit,Quy mô việc làm
+bai3_priority_sectors,default,ai_readiness_0_100,0.2,benefit,Mức độ sẵn sàng AI
+bai3_priority_sectors,default,automation_risk_pct,0.15,cost,Rủi ro tự động hóa; càng cao càng bất lợi
+bai3_priority_sectors,growth_oriented,growth_rate_2024_pct,0.25,benefit,Ưu tiên tăng trưởng
+bai3_priority_sectors,growth_oriented,gdp_share_2024_pct,0.25,benefit,Ưu tiên quy mô kinh tế
+bai3_priority_sectors,growth_oriented,spillover_coef_0_1,0.1,benefit,Lan tỏa
+bai3_priority_sectors,growth_oriented,export_billion_USD,0.2,benefit,Ưu tiên xuất khẩu
+bai3_priority_sectors,growth_oriented,labor_million,0.05,benefit,Việc làm
+bai3_priority_sectors,growth_oriented,ai_readiness_0_100,0.1,benefit,Sẵn sàng AI
+bai3_priority_sectors,growth_oriented,automation_risk_pct,0.05,cost,Rủi ro tự động hóa
+bai3_priority_sectors,inclusive_oriented,growth_rate_2024_pct,0.1,benefit,Tăng trưởng
+bai3_priority_sectors,inclusive_oriented,gdp_share_2024_pct,0.05,benefit,Quy mô kinh tế
+bai3_priority_sectors,inclusive_oriented,spillover_coef_0_1,0.25,benefit,Ưu tiên lan tỏa
+bai3_priority_sectors,inclusive_oriented,export_billion_USD,0.05,benefit,Xuất khẩu
+bai3_priority_sectors,inclusive_oriented,labor_million,0.25,benefit,Ưu tiên việc làm
+bai3_priority_sectors,inclusive_oriented,ai_readiness_0_100,0.1,benefit,Sẵn sàng AI
+bai3_priority_sectors,inclusive_oriented,automation_risk_pct,0.2,cost,Ưu tiên giảm rủi ro tự động hóa
+bai6_topsis_regions,expert,grdp_per_capita_million_VND,0.1,benefit,GRDP/người
+bai6_topsis_regions,expert,fdi_registered_billion_USD,0.1,benefit,FDI đăng ký
+bai6_topsis_regions,expert,digital_index_0_100,0.15,benefit,Chỉ số số hóa
+bai6_topsis_regions,expert,ai_readiness_0_100,0.2,benefit,Mức độ sẵn sàng AI
+bai6_topsis_regions,expert,trained_labor_pct,0.15,benefit,Lao động qua đào tạo
+bai6_topsis_regions,expert,rd_intensity_pct,0.15,benefit,Cường độ R&D
+bai6_topsis_regions,expert,internet_penetration_pct,0.05,benefit,Tỷ lệ Internet
+bai6_topsis_regions,expert,gini_coef,0.1,cost,Gini; càng thấp càng tốt
