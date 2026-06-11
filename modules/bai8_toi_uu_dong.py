@@ -522,9 +522,30 @@ def run():
             """)
             st.dataframe(bellman_df.head(12), use_container_width=True)
 
-            fig = plot_line(bellman_df, "K", ["saving_rate_policy"], "Chính sách tiết kiệm tối ưu trong Bellman demo", "Saving rate")
+            # Biểu đồ Bellman demo: trục X là mức vốn K, không phải năm.
+            fig, ax = plt.subplots(figsize=(9, 5))
+            ax.plot(
+                bellman_df["K"],
+                bellman_df["saving_rate_policy"],
+                marker="o",
+                label="Tỷ lệ tiết kiệm tối ưu"
+            )
+            ax.set_title("Chính sách tiết kiệm tối ưu theo mức vốn K")
+            ax.set_xlabel("Vốn K")
+            ax.set_ylabel("Tỷ lệ tiết kiệm")
+            ax.set_ylim(
+                max(0, bellman_df["saving_rate_policy"].min() - 0.01),
+                bellman_df["saving_rate_policy"].max() + 0.01
+            )
+            ax.grid(alpha=0.4)
+            ax.legend()
             st.pyplot(fig)
             plt.close(fig)
+
+            st.info(
+                "Phần Bellman chỉ là minh họa kỹ thuật tối ưu động. "
+                "Trong bộ tham số demo, tỷ lệ tiết kiệm tối ưu gần như ổn định theo mức vốn K."
+            )
 
     with tab3:
         st.subheader("Câu 8.3.2 – Quỹ đạo tối ưu của K, D, AI, H, Y, C")
